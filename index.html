@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Secret Surprise!</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+        }
+
+        /* Hide all pages by default */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* Show the active page */
+        .active {
+            display: block;
+        }
+
+        h1 { color: #d63031; margin-bottom: 1rem; }
+        p { color: #2d3436; line-height: 1.6; font-size: 1.1rem; }
+
+        .btn {
+            background-color: #00b894;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 25px;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #009475;
+            transform: scale(1.05);
+        }
+
+        /* Prank Emoji Styling */
+        .emoji-line {
+            font-size: 3.5rem;
+            letter-spacing: 12px;
+            margin: 20px 0;
+            display: block;
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="page active" id="page1">
+            <h1>Ho Ho Ho! 🎅</h1>
+            <p>Somebody has been a very naughty friend this year...</p>
+            <button class="btn" onclick="nextPage(2)">Click to begin</button>
+        </div>
+
+        <div class="page" id="page2">
+            <h1>Do you think you deserve a gift?</h1>
+            <p>If you think you do... click the next button...</p>
+            <button class="btn" onclick="nextPage(3)">Next</button>
+        </div>
+
+        <div class="page" id="page3">
+            <h1>Here's your GIFT!!!</h1>
+            <span class="emoji-line">🖕🖕🖕🖕🖕</span>
+            <p>Just kidding! Or am I? Click to find out...</p>
+            <button class="btn" onclick="nextPage(4)">Next</button>
+        </div>
+
+        <div class="page" id="page4">
+            <h1>A Little Mystery...</h1>
+            <p>Your Secret Santa has actually been busy at work finding something special just for you.</p>
+            <button class="btn" onclick="nextPage(5)">Next</button>
+        </div>
+
+        <div class="page" id="page5">
+            <h1>Wait for it...</h1>
+            <p>It's not a bike, and it's not a girlfriend (sorry!), but it's coming your way very soon.</p>
+            <button class="btn" onclick="nextPage(6)">Almost there...</button>
+        </div>
+
+        <div class="page" id="page6">
+            <h1>Surprise! 🎁</h1>
+            <p>Check your front porch for your gift!</p>
+            <p><strong>Merry Christmas!</strong></p>
+            <button class="btn" onclick="nextPage(1)">Start Over</button>
+        </div>
+    </div>
+
+    <script>
+        function nextPage(pageNumber) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show the target page
+            const targetPage = document.getElementById('page' + pageNumber);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+        }
+    </script>
+
+</body>
+</html>
